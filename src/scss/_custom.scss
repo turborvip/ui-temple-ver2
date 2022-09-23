@@ -1,0 +1,32 @@
+// @import 'scss/colors';
+@import 'colors';
+$primary: #3498db !default;
+::-webkit-scrollbar {
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: $gray-100;
+  border-radius: 0.3rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $gray-300;
+  border-radius: 0.3rem;
+}
+.form-login-custom{
+  position: relative;
+  top: 100px;
+  width: 500px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  height: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  .btn-form-login{
+    display: flex;
+    margin: auto;
+  }
+}
+
+
+

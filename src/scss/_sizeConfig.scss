@@ -1,0 +1,75 @@
+// FOR WIDTH
+.w-100px {
+  width: 100px !important;
+}
+.w-80px {
+  width: 80px !important;
+}
+.w-185px {
+  width: 185px !important;
+}
+.w-100pc {
+  width: 100% !important;
+}
+// FOR HEIGHT
+.h-28rem {
+  height: 28rem !important;
+}
+// FOR MIN-HEIGHT
+.mh-45vh {
+  min-height: 45vh !important;
+}
+.mh-65vh {
+  min-height: 65vh !important;
+}
+.mh-28rem {
+  min-height: 28rem !important;
+}
+.border-user-task-db {
+  border: 1px solid #c8ced3;
+  border-radius: 0.25rem;
+}
+.min-h-fill-screen {
+  min-height: calc(100vh - 7.5rem);
+}
+
+.min-h-100 {
+  min-height: 100%;
+}
+
+@for $i from 1 through 1000 {
+  // FOR MIN-HEIGHT
+  .mh-#{$i}rem {
+    min-height: #{$i}rem !important;
+  }
+  .mh-#{$i}vh {
+    min-height: #{$i}vh !important;
+  }
+  .mh-#{$i}px {
+    min-height: #{$i}px !important;
+  }
+  // FOR HEIGHT
+  .h-#{$i}rem {
+    height: #{$i}rem !important;
+  }
+  .h-#{$i}vh {
+    height: #{$i}vh !important;
+  }
+  .h-#{$i}px {
+    height: #{$i}px !important;
+  }
+  // FOR WIDTH
+  .w-#{$i}px {
+    width: #{$i}px !important;
+  }
+
+  .w-#{$i}vh {
+    width: #{$i}vh !important;
+  }
+  .mw-#{$i}vh {
+    min-width: #{$i}vh !important;
+  }
+  //   .w-#{$i}pc {
+  //     width: #{$i}% !important;
+  //   }
+}

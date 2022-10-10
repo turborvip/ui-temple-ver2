@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../services/axios';
-import localStorage from '../helper/localStorage'
+import localStorage from '../utils/localStorage'
 
 interface Account {
   username: string;
@@ -8,6 +8,7 @@ interface Account {
 }
 
 interface LoginState {
+  isLogged:boolean;
   isLoading: boolean;
   isAuth: boolean;
   error: string;
@@ -16,10 +17,11 @@ interface LoginState {
 }
 
 const initialState: LoginState = {
+  isLogged:false,
   isLoading: false,
   isAuth: localStorage.get('accessToken') ? true : false,
   error: '',
-  accessToken:  null,
+  accessToken: null,
   userInfo:  {}
 };
 
@@ -28,6 +30,7 @@ export const loginInClient = createAsyncThunk(
   async (data: Account, thunkAPI) => {
     try {
      const response =  await axios.post('/login', data);
+     console.log('first',response)
      return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error);
@@ -35,7 +38,7 @@ export const loginInClient = createAsyncThunk(
   }
 );
 
-const loginSlice = createSlice({
+const userSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
@@ -45,6 +48,8 @@ const loginSlice = createSlice({
     },
     logout: (state) => {
         state.accessToken = null;
+        state.isLogged = false;
+        state.isAuth = false;
     },
   },
   extraReducers: (builder) => {
@@ -53,6 +58,7 @@ const loginSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginInClient.fulfilled, (state, action: any) => {
+        state.isLogged = true;
         state.isLoading = false;
         state.isAuth = true;
         state.error = '';
@@ -69,5 +75,5 @@ const loginSlice = createSlice({
   },
 });
 
-export default loginSlice.reducer;
-export const { login,logout } = loginSlice.actions;
+export default userSlice.reducer;
+export const { login,logout } = userSlice.actions;

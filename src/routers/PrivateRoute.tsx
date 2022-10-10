@@ -6,8 +6,7 @@ import { useAppSelector } from '../redux/store';
 const PrivateRoute : FC<RouteProps> =  props => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('first',props)
-  const { isAuth } = useAppSelector((state) => state.login);
+  const { isAuth } = useAppSelector((state) => state.user);
   if (isAuth) return <Outlet />;
   else return(
     <Result

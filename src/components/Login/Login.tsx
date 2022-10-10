@@ -1,31 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { useAppDispatch } from '../../redux/store';
-import { loginInClient } from '../../redux/LoginSlice';
-import {useNavigate} from 'react-router-dom'
+import { useAppDispatch,useAppSelector } from '../../redux/store';
+import { loginInClient } from '../../redux/userSlice';
+import {useNavigate,useLocation} from 'react-router-dom'
+import {formatSearch} from '../../utils/formatSearch'
 
 const Login:React.FC= () => {
   const [loading, setLoading] = useState(false);
-
+  const {isLogged } = useAppSelector(state => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onFinish = async (values: {username:string,password:string}) => {
     setLoading(true);
 
-    const response = await dispatch(loginInClient(values));
-    console.log(response!);
-    // if(response == true)
-    // if(response) {navigate('../')}
-
+    await dispatch(loginInClient(values));
     setLoading(false);
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+  useEffect(() => {
+    if(isLogged){
+      const search = formatSearch(location.search);
+      const from = search.from || { pathname: '/' };
+      navigate(from);
+    }
+  }, [isLogged])
+  
 
   const antIcon = <LoadingOutlined style={{ fontSize: 20 }} spin />;
   return (
@@ -34,7 +37,6 @@ const Login:React.FC= () => {
       className="login-form form-login-custom"
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
     >
       <Form.Item
         name="username"

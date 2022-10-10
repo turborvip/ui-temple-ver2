@@ -1,6 +1,6 @@
 import axiosInstance from 'axios';
 import ENDPOINT from './endpoint';
-import localStorage from '../helper/localStorage';
+import localStorage from '../utils/localStorage';
 import { message as $message } from 'antd';
 
 

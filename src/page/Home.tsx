@@ -1,9 +1,9 @@
 import { Button } from 'antd';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import localStorage from '../helper/localStorage';
+import localStorage from '../utils/localStorage';
 import { useAppDispatch } from '../redux/store';
-import {logout} from '../redux/LoginSlice'
+import {logout} from '../redux/userSlice'
 function Home() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

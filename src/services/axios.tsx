@@ -48,8 +48,8 @@ axios.interceptors.response.use(
     return res;
   },
   (err) => {
-    $message.error(err?.response.data.msg);
     console.log('err',err)
+    $message.error(err?.response?.data.msg);
     if(!err?.response?.data?.refreshToken){
       local.clear();
       window.confirm("Your session is expired...");

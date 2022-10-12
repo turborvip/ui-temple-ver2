@@ -9,7 +9,6 @@ function Home() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.clear();
     dispatch(logout());
     navigate('../login');
   }

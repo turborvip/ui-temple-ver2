@@ -16,7 +16,6 @@ const Login:React.FC= () => {
 
   const onFinish = async (values: {username:string,password:string}) => {
     setLoading(true);
-
     await dispatch(loginInClient(values));
     setLoading(false);
   };
@@ -27,7 +26,7 @@ const Login:React.FC= () => {
       const from = search.from || { pathname: '/' };
       navigate(from);
     }
-  }, [isLogged])
+  }, [isLogged,location,navigate])
   
 
   const antIcon = <LoadingOutlined style={{ fontSize: 20 }} spin />;

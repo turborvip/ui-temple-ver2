@@ -1,13 +1,17 @@
 import { Button, Result } from 'antd';
-import React, { FC } from 'react';
+import axios from '../services/axios';
+import React, { FC, useCallback, useEffect } from 'react';
 import {Outlet, RouteProps, useLocation, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../redux/store';
+import { useAppDispatch, useAppSelector } from '../redux/store';
+import local from '../utils/localStorage';
+import { login } from '../redux/userSlice';
 
 const PrivateRoute : FC<RouteProps> =  props => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
-  const { isAuth } = useAppSelector((state) => state.user);
-  if (isAuth) return <Outlet />;
+  const { isLogged } = useAppSelector((state) => state.user);
+  if (isLogged) return <Outlet />;
   else return(
     <Result
       status="403"

@@ -8,8 +8,12 @@ const get = (key: string) => {
 const clear = () => {
   return localStorage.clear();
 };
+const remove = (key:string) => {
+  return localStorage.removeItem(key); 
+}
 export default {
   add,
   get,
   clear,
+  remove,
 };
